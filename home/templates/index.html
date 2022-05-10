@@ -37,16 +37,16 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">Home</a></li>
+							<li class="active"><a href="{% url 'index' %}">Home</a></li>
 							{% comment %} <li><a href="{% url 'generic' 1 %}">Generic Page</a></li> {% endcomment %}
 							<li><a href="{% url 'elements' %}">Add Post</a></li>
 						</ul>
-						<ul class="icons">
+						{% comment %} <ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
+						</ul> {% endcomment %}
 					</nav>
 
 				<!-- Main -->
@@ -153,15 +153,39 @@
 						<!-- Footer -->
 							<footer>
 								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
+								
+									{% if allPosts.has_previous %}
+										{% comment %} <a href="{% url 'index' %}?page=1" class="page">1</a> {% endcomment %}
+										{% comment %} <span class="extra">&hellip;</span> {% endcomment %}
+										
+										<a href="{% url 'index' %}?page={{allPosts.previous_page_number}}" class="previous">Prev</a>
+									{% endif %}
+
+									<a href="#" class="page active">{{allPosts.number}}</a>
+
+									{% if allPosts.has_next %}
+										<a href="{% url 'index' %}?page={{allPosts.next_page_number}}" class="next">Next</a>
+										{% comment %} <span class="extra">&hellip;</span> {% endcomment %}
+										{% comment %} <a href="{% url 'index' %}?page={{allPosts.paginator.num_pages}}" class="page">{{allPosts.paginator.num_pages}}</a> {% endcomment %}
+									{% endif %}
+									
+									{% comment %} {% if allPosts.paginator.page_range >= 3 %}
+										{% for i in list(range(allPosts.number, 4)) %}
+											
+											<!-- All the other pages -->
+											<a href="{% url 'index' %}?page={{i}}" class="page">{{i}}</a>
+											
+										{% endfor %}
+									{% endif %} {% endcomment %}
+
+																		
+									{% comment %} <a href="#" class="page">2</a>
 									<a href="#" class="page">3</a>
 									<span class="extra">&hellip;</span>
 									<a href="#" class="page">8</a>
 									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
+									<a href="#" class="page">10</a> {% endcomment %}
+
 								</div>
 							</footer>
 
@@ -217,8 +241,8 @@
 					</footer> {% endcomment %}
 
 				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					<div id="copyright"  style="font-size: large;">
+						<ul><li><a href="">Made with love ❤️</li><li>by:  Tejas Srivastava</a></li></ul>
 					</div>
 
 			</div>

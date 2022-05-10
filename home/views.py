@@ -3,6 +3,10 @@ from home.models import NewPost
 from django.contrib import messages
 from django.db.models import Max
 
+
+from django.core.paginator import Paginator, EmptyPage
+
+
 # Create your views here.
 def home(request):
    allPosts = NewPost.objects.all()
@@ -13,8 +17,18 @@ def home(request):
    #    print("Content = ", obj.content)
    #    print(".....................")
   
+   p = Paginator(allPosts, 4)
+   pageNum = request.GET.get('page', 1)
+   
+  
+   try:
+      page = p.page(pageNum) 
+   except EmptyPage:
+      page = p.page(1) 
+      
+  
    context = {
-      'allPosts' : allPosts
+      'allPosts' : page
    }
    
    return render(request, "index.html", context)

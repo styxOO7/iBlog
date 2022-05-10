@@ -4398,6 +4398,7 @@ input, select, textarea {
 		width: calc(100% - 4rem);
 		max-width: 72rem;
 		z-index: 2;
+		
 	}
 
 		#copyright input, #copyright select, #copyright textarea {
@@ -4438,6 +4439,7 @@ input, select, textarea {
 		#copyright a {
 			color: inherit;
 			border-bottom-color: inherit;
+			text-decoration: none;
 		}
 
 		#copyright ul {
