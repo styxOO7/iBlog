@@ -29,7 +29,7 @@
 						<ul class="links">
 							<li><a href="{% url 'index' %}">Home</a></li>
 							{% comment %} <li><a href="{% url 'generic' 1 %}">Generic Page</a></li> {% endcomment %}
-							<li class="active"><a href="{% url 'elements' %}">Add Post</a></li>
+							<li class=""><a href="{% url 'elements' %}">Add Post</a></li>
 						</ul>
 						{% comment %} <ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -385,6 +385,7 @@
 											<!-- Break -->
 											<div class="col-12">
 												<ul class="actions">
+													<input type="file" name="upload" accept="image/*">
 													<li><input type="submit" value="Update" class="primary" /></li>
 													<li><a href="{% url 'generic' thisPost.postId %}" class="button">Cancel</a></li>
 												</ul>

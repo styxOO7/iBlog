@@ -1,4 +1,5 @@
 from django.db import models
+from django_resized import ResizedImageField
 
 import datetime
 
@@ -17,6 +18,8 @@ class NewPost(models.Model):
     
     postTime = models.TextField(default=datetime.datetime.now().strftime("%I:%M%p"))
     postDate = models.TextField(default=datetime.datetime.now().strftime("%B %d, %Y"))
+    
+    postImg = ResizedImageField(size=[2917, 2500], null=True, blank=True, default='pic02.jpg')
     
     print("WORKING.................")
     

@@ -76,7 +76,7 @@
 											<span class="date">{{post.postTime}} on {{ post.postDate }}</span>
 											<h2><a href="#">{{ post.topic }} </a></h2>
 										</header>
-										<a href="#" class="image fit"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
+										<a href="#" class="image fit"><img src="{% static 'images/' %}{{post.postImg}}"  alt="image" /></a>
 										<p> {{ post.content|truncatewords:50 }}</p>
 										<ul class="actions special">
 											<ul class="actions fit">

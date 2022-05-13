@@ -32,6 +32,9 @@
 							{% comment %} <li class="active"><a href="{% url 'generic' thisPost.postId %}">Generic Page</a></li> {% endcomment %}
 							<li><a href="{% url 'elements' %}">New Post</a></li>
 						</ul>
+						<ul class="actions">
+							<li><a href="{% url 'searchPage' %}" class="button  icon solid fa-search">Search</a></li>
+						</ul>
 						<!-- <ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -80,7 +83,7 @@
 									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
 									amet nullam sed etiam veroeros.</p> {% endcomment %}
 								</header>
-								<div class="image main"><img src="{% static 'images/pic02.jpg' %}" alt="" /></div>
+								<div class="image main"><img src="{% static 'images/' %}{{thisPost.postImg}}"  alt="image"/></div>
 								<p>{{ thisPost.content }}</p>
 								
 								<ul class="actions special">

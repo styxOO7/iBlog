@@ -86,6 +86,7 @@ def updatePostHelp(request, id):
       
          topic = request.POST['topic']
          content = request.POST['content']
+         image = request.POST['upload']
          
          if (not(topic and topic.strip() and content and content.strip())):
             messages.error(request, 'Topic or Content cannot be empty')
@@ -102,12 +103,26 @@ def updatePostHelp(request, id):
          postTime = datetime.datetime.now().strftime("%I:%M%p")
          postDate = datetime.datetime.now().strftime("%B %d, %Y")
          
-         thisPost.postDate = postDate
-         thisPost.postTime = postTime
-         thisPost.topic = topic.lower()
-         thisPost.content = content
-         thisPost.postId = id
-         thisPost.save()
+      
+         if len(image) != 0:
+            thisPost.postDate = postDate
+            thisPost.postTime = postTime
+            thisPost.topic = topic.lower()
+            thisPost.content = content
+            thisPost.postId = id
+            thisPost.postImg = image
+            print("saved img")
+            thisPost.save()
+         else:
+            thisPost.postDate = postDate
+            thisPost.postTime = postTime
+            thisPost.topic = topic.lower()
+            thisPost.content = content
+            thisPost.postId = id
+            print("saved without img")
+            
+            thisPost.save()
+         
          
          # messages.success(request, 'Post updated successfully!!', extra_tags='update')
          
@@ -141,6 +156,11 @@ def searchPage(request):
          print("IT IS A DATE....................")
          
          dt = list(map(int, dt))
+         
+         if (dt[0] < 1 or dt[0] > 12) or (dt[1] < 1 or dt[1] > 31) or (dt[2] < 1):
+            messages.success(request, "Error: Enter valid search details.")
+            return render(request, "searchPage.html")
+         
          x = datetime.datetime(dt[0], dt[1], dt[2])
          postDate = (x.strftime("%b %d, %Y"))
          
@@ -179,13 +199,14 @@ def searchPage(request):
       else:
          print("IT IS A TOPIC_______________________")
          print(data)
-         allPosts = NewPost.objects.filter(topic__startswith=data)
+         allPosts = NewPost.objects.filter(topic__contains=data)
 
-         # for obj in allPosts:
-         #    print("Post Id = ", obj.postId)
-         #    print("Topic = ", obj.topic)
-         #    print("Content = ", obj.content)
-         #    print(".....................")
+         for obj in allPosts:
+            print("Post Id = ", obj.postId)
+            print("Topic = ", obj.topic)
+            print("Content = ", obj.content)
+            print("Img = ", obj.postImg)
+            print(".....................")
          
          # if no results:
          if len(allPosts) == 0:
@@ -244,6 +265,7 @@ def elements(request):
       
       topic = request.POST['topic']
       content = request.POST['content']
+      image = request.POST['upload']
       
       if (not(topic and topic.strip() and content and content.strip())):
          messages.error(request, 'Topic or Content cannot be empty')
@@ -261,14 +283,19 @@ def elements(request):
       postTime = datetime.datetime.now().strftime("%I:%M%p")
       postDate = datetime.datetime.now().strftime("%B %d, %Y")
       
-      newPost = NewPost(postTime=postTime, postDate=postDate, topic=topic.lower(), content=content, postId=postId) 
-      newPost.save()
+      if len(image) != 0:
+         newPost = NewPost(postTime=postTime, postDate=postDate, topic=topic.lower(), content=content, postId=postId, postImg=image) 
+         newPost.save()
+      else:
+         newPost = NewPost(postTime=postTime, postDate=postDate, topic=topic.lower(), content=content, postId=postId) 
+         newPost.save()
       
       messages.success(request, 'Post added successfully!!')
       
       print("Post Id = ", postId)
       print("Topic = ", topic)
       print("Content = ", content)
+      print("Img = ", image)
       print("SAVED.....................")
         
       return redirect('elements')

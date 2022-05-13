@@ -1,6 +1,4 @@
 dj_database_url==0.5.0
 Django==3.2.5
 django_heroku==0.3.1
-gunicorn 
-django_tinymce==3.4.0
-python-decouple==3.6
+django_resized==1.0.0

@@ -30,6 +30,10 @@
 							<li><a href="{% url 'index' %}">Home</a></li>
 							{% comment %} <li><a href="{% url 'generic' 1 %}">Generic Page</a></li> {% endcomment %}
 							<li class="active"><a href="{% url 'elements' %}">Add Post</a></li>
+							
+						</ul>
+						<ul class="actions">
+							<li><a href="{% url 'searchPage' %}" class="button  icon solid fa-search">Search</a></li>
 						</ul>
 						{% comment %} <ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -383,6 +387,7 @@
 												<textarea name="content" id="demo-message" placeholder="Start typing..." rows="6"></textarea>
 											</div>
 											<!-- Break -->
+											<input type="file" name="upload" accept="image/*">
 											<div class="col-12">
 												<ul class="actions">
 													<li><input type="submit" value="Post" class="primary" /></li>
