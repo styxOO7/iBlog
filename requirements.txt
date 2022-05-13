@@ -4,4 +4,4 @@ django_heroku==0.3.1
 gunicorn 
 django_tinymce==3.4.0
 python-decouple==3.6
-pillow==9.1.0
+Pillow==9.1.0
