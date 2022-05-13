@@ -1,17 +1,22 @@
 from django.db import models
-from datetime import date
 
+import datetime
 
 # Create your models here.
 class NewPost(models.Model):
     
-    today = date.today()
-    d = today.strftime("%B %d, %Y")
+    # today = date.today()
+    # d = today.strftime("%B %d, %Y")
+    # postTime = datetime.datetime.now().strftime("%I:%M%p")
+    # postDate = datetime.datetime.now().strftime("%B %d, %Y")
     
-    postDate = d
+    
     topic = models.CharField(max_length=30)
     content = models.TextField()
     postId = models.IntegerField()
+    
+    postTime = models.TextField(default=datetime.datetime.now().strftime("%I:%M%p"))
+    postDate = models.TextField(default=datetime.datetime.now().strftime("%B %d, %Y"))
     
     print("WORKING.................")
     

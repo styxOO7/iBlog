@@ -1,0 +1,136 @@
+
+{% load static %}
+
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Search Blogs - iBlog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				
+				<!-- Header -->
+					<header id="header">
+						<a href="{% url 'index' %}" class="logo">iBlog</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="{% url 'index' %}">Home</a></li>
+							{% comment %} <li><a href="{% url 'generic' 1 %}">Generic Page</a></li> {% endcomment %}
+							<li><a href="{% url 'elements' %}">Add Post</a></li>
+						</ul>
+						<ul class="actions">
+							<li><a href="{% url 'searchPage' %}" class="button  icon solid fa-search">Search</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+                        <section class="post">
+                        <h2>Search Posts</h2>
+
+									<form method="POST" action="{% url 'searchPage' %}">
+										{% csrf_token %}
+										<div class="row gtr-uniform">
+                                            <div class="col-8 col-12-xsmall">
+                                                <input type="text" name="data" id="demo-name" value="" placeholder="Topic / yyyy mm dd" />
+                                            </div>
+											<div class="col-12">
+												<ul class="actions">
+													<li><input type="submit" value="Search" class="primary" /></li>
+													<li><a href="{% url 'index' %}" class="button">Cancel</a></li>
+												</ul>
+											</div>
+										</div>
+									</form>
+
+
+									<br>
+{% if messages %}
+{% for message in messages %}
+<pre><code>{{ message }}
+</code></pre>{% endfor %}
+{% endif %}
+                                </section>
+
+                    	<!-- Results: Posts -->
+						<section class="posts">			
+								{% for post in allPosts %}
+									<article>
+										<header>
+											<span class="date">{{post.postTime}} on {{ post.postDate }}</span>
+											<h2><a href="#">{{ post.topic }} </a></h2>
+										</header>
+										<a href="#" class="image fit"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
+										<p> {{ post.content|truncatewords:50 }}</p>
+										<ul class="actions special">
+											<ul class="actions fit">
+												<li><a href="{% url 'generic' post.postId %}" class="button fit">Read More</a></li>
+											</ul>
+										</ul>
+									</article>
+								
+								{% endfor %}
+
+								
+							</section>
+
+						<!-- Footer -->
+							{% comment %} <footer>
+								<div class="pagination">
+								
+									{% if allPosts.has_previous %}						
+										<a href="{% url 'searchPage' %}?page={{allPosts.previous_page_number}}" class="previous">Prev</a>
+									{% endif %}
+
+									<a href="#" class="page active">{{allPosts.number}}</a>
+
+									{% if allPosts.has_next %}
+										<a href="{% url 'searchPage' %}?page={{allPosts.next_page_number}}" class="next">Next</a>
+										
+									{% endif %}
+									
+
+								</div>
+							</footer> {% endcomment %}
+
+					</div>
+
+			
+
+				<!-- Copyright -->
+					<div id="copyright"  style="font-size: large;">
+						<ul><li><a href="">Made with love ❤️</li><li>by:  Tejas Srivastava</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+
+	
+
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

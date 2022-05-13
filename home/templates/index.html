@@ -41,12 +41,16 @@
 							{% comment %} <li><a href="{% url 'generic' 1 %}">Generic Page</a></li> {% endcomment %}
 							<li><a href="{% url 'elements' %}">Add Post</a></li>
 						</ul>
-						{% comment %} <ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<ul class="actions">
+							<li><a href="{% url 'searchPage' %}" class="button  icon solid fa-search">Search</a></li>
+						</ul>
+						<ul class="icons">
+							
+							{% comment %} <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul> {% endcomment %}
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li> {% endcomment %}
+						</ul> 
 					</nav>
 
 				<!-- Main -->
@@ -69,19 +73,26 @@
 							</article> {% endcomment %}
 
 						<!-- Posts -->
+
+						
+
 							<section class="posts">
 
 								{% for post in allPosts %}
-
+									
 									<article>
 										<header>
-											<span class="date">{{ post.postDate }}</span>
+											<span class="date">{{post.postTime}} on {{ post.postDate }}</span>
 											<h2><a href="#">{{ post.topic }} </a></h2>
 										</header>
 										<a href="#" class="image fit"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
 										<p> {{ post.content|truncatewords:50 }}</p>
 										<ul class="actions special">
-											<li><a href="{% url 'generic' post.postId %}" class="button">Read More</a></li>
+											{% comment %} <li><a href="{% url 'generic' post.postId %}" class="button">Read More</a></li> {% endcomment %}
+											<ul class="actions fit">
+												<li><a href="{% url 'generic' post.postId %}" class="button fit">Read More</a></li>
+											</ul>
+											{% comment %} <li><a href="{% url 'confirmDelete' post.postId %}" class="button primary">Delete Post</a></li> {% endcomment %}
 										</ul>
 									</article>
 								
@@ -155,9 +166,6 @@
 								<div class="pagination">
 								
 									{% if allPosts.has_previous %}
-										{% comment %} <a href="{% url 'index' %}?page=1" class="page">1</a> {% endcomment %}
-										{% comment %} <span class="extra">&hellip;</span> {% endcomment %}
-										
 										<a href="{% url 'index' %}?page={{allPosts.previous_page_number}}" class="previous">Prev</a>
 									{% endif %}
 
@@ -165,20 +173,8 @@
 
 									{% if allPosts.has_next %}
 										<a href="{% url 'index' %}?page={{allPosts.next_page_number}}" class="next">Next</a>
-										{% comment %} <span class="extra">&hellip;</span> {% endcomment %}
-										{% comment %} <a href="{% url 'index' %}?page={{allPosts.paginator.num_pages}}" class="page">{{allPosts.paginator.num_pages}}</a> {% endcomment %}
 									{% endif %}
-									
-									{% comment %} {% if allPosts.paginator.page_range >= 3 %}
-										{% for i in list(range(allPosts.number, 4)) %}
-											
-											<!-- All the other pages -->
-											<a href="{% url 'index' %}?page={{i}}" class="page">{{i}}</a>
-											
-										{% endfor %}
-									{% endif %} {% endcomment %}
-
-																		
+																									
 									{% comment %} <a href="#" class="page">2</a>
 									<a href="#" class="page">3</a>
 									<span class="extra">&hellip;</span>
@@ -248,6 +244,15 @@
 			</div>
 
 		<!-- Scripts -->
+
+			 {% if messages %}
+				{% for message in messages %}
+					<script>
+						alert('{{ message }}');
+					</script>
+				{% endfor %}
+			{% endif %} 
+
 			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
 			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
 			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>

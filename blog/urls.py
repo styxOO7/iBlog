@@ -29,5 +29,12 @@ urlpatterns = [
     path('', views.home, name='index'),
     path('index', views.home, name='index'),
     path('generic/<id>', views.generic, name='generic'),
+    path('confirmDelete/<id>', views.confirmDelete, name='confirmDelete'),
+    path('deletePost/<id>', views.deletePost, name='deletePost'),
+    path('updatePost/<id>', views.updatePost, name='updatePost'),
+    path('updatePostHelp/<id>', views.updatePostHelp, name='updatePostHelp'),
+    
+    path('searchPage', views.searchPage, name='searchPage'),
+    
     path('elements', views.elements, name='elements'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
