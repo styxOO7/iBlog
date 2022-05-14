@@ -86,7 +86,11 @@ def updatePostHelp(request, id):
       
          topic = request.POST['topic']
          content = request.POST['content']
-         image = request.POST['upload']
+         
+         if len(request.FILES) != 0:
+            image = request.FILES['upload']
+            thisPost.postImg = image
+       
          
          if (not(topic and topic.strip() and content and content.strip())):
             messages.error(request, 'Topic or Content cannot be empty')
@@ -103,26 +107,15 @@ def updatePostHelp(request, id):
          postTime = datetime.datetime.now().strftime("%I:%M%p")
          postDate = datetime.datetime.now().strftime("%B %d, %Y")
          
-      
-         if len(image) != 0:
-            thisPost.postDate = postDate
-            thisPost.postTime = postTime
-            thisPost.topic = topic.lower()
-            thisPost.content = content
-            thisPost.postId = id
-            thisPost.postImg = image
-            print("saved img")
-            thisPost.save()
-         else:
-            thisPost.postDate = postDate
-            thisPost.postTime = postTime
-            thisPost.topic = topic.lower()
-            thisPost.content = content
-            thisPost.postId = id
-            print("saved without img")
-            
-            thisPost.save()
+
+         thisPost.postDate = postDate
+         thisPost.postTime = postTime
+         thisPost.topic = topic.lower()
+         thisPost.content = content
+         thisPost.postId = id
          
+         thisPost.save()
+                
          
          # messages.success(request, 'Post updated successfully!!', extra_tags='update')
          
@@ -261,18 +254,14 @@ def elements(request):
    
    if request.method == 'POST':
       print("ENTERED......................")
-      # newPost = NewPost(request.POST)
       
       topic = request.POST['topic']
       content = request.POST['content']
-      image = request.POST['upload']
-      
+           
       if (not(topic and topic.strip() and content and content.strip())):
          messages.error(request, 'Topic or Content cannot be empty')
-         # return render(request, 'elements', message='Topic or Content cannot be empty')
          return render(request, 'elements.html')
       
-      # postId = NewPost.objects.all().count() + 1
       dict = NewPost.objects.aggregate(Max('postId'))
       
       if NewPost.objects.all().count() == 0:
@@ -283,7 +272,9 @@ def elements(request):
       postTime = datetime.datetime.now().strftime("%I:%M%p")
       postDate = datetime.datetime.now().strftime("%B %d, %Y")
       
-      if len(image) != 0:
+      
+      if len(request.FILES) != 0:
+         image = request.FILES['upload']
          newPost = NewPost(postTime=postTime, postDate=postDate, topic=topic.lower(), content=content, postId=postId, postImg=image) 
          newPost.save()
       else:
@@ -295,7 +286,7 @@ def elements(request):
       print("Post Id = ", postId)
       print("Topic = ", topic)
       print("Content = ", content)
-      print("Img = ", image)
+      # print("Img = ", image)
       print("SAVED.....................")
         
       return redirect('elements')

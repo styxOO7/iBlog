@@ -337,7 +337,7 @@
 								<!-- Form --> {% endcomment %}
 									<h2>Update Post</h2>
 
-									<form method="POST" action="{% url 'updatePostHelp' thisPost.postId %}">
+									<form method="POST" enctype="multipart/form-data"  action="{% url 'updatePostHelp' thisPost.postId %}">
 										{% csrf_token %}
 										<div class="row gtr-uniform">
 											<div class="col-8 col-12-xsmall">
@@ -385,7 +385,7 @@
 											<!-- Break -->
 											<div class="col-12">
 												<ul class="actions">
-													<input type="file" name="upload" accept="image/*">
+													<input type="file" name="upload" accept="image/*" >
 													<li><input type="submit" value="Update" class="primary" /></li>
 													<li><a href="{% url 'generic' thisPost.postId %}" class="button">Cancel</a></li>
 												</ul>

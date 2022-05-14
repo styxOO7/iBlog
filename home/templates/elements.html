@@ -341,48 +341,13 @@
 								<!-- Form --> {% endcomment %}
 									<h2>Add Post</h2>
 
-									<form method="POST" action="{% url 'elements' %}">
+									<form method="POST" enctype="multipart/form-data" action="{% url 'elements' %}">
 										{% csrf_token %}
 										<div class="row gtr-uniform">
 											<div class="col-8 col-12-xsmall">
 												<input type="text" name="topic" id="demo-name" value="" placeholder="Topic" />
 											</div>
-											{% comment %} <div class="col-6 col-12-xsmall">
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-											</div> {% endcomment %}
-											<!-- Break -->
-											{% comment %} <div class="col-12">
-												<select name="demo-category" id="demo-category">
-													<option value="">- Category -</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
-												</select>
-											</div>
-											<!-- Break -->
-											<div class="col-4 col-12-small">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="col-4 col-12-small">
-												<input type="radio" id="demo-priority-normal" name="demo-priority">
-												<label for="demo-priority-normal">Normal</label>
-											</div>
-											<div class="col-4 col-12-small">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<!-- Break -->
-											<div class="col-6 col-12-small">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="col-6 col-12-small">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">I am a human</label>
-											</div> {% endcomment %}
-											<!-- Break -->
+										
 											<div class="col-12">
 												<textarea name="content" id="demo-message" placeholder="Start typing..." rows="6"></textarea>
 											</div>

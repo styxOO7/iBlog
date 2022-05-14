@@ -18,7 +18,7 @@ class NewPost(models.Model):
     postTime = models.TextField(default=datetime.datetime.now().strftime("%I:%M%p"))
     postDate = models.TextField(default=datetime.datetime.now().strftime("%B %d, %Y"))
     
-    postImg = models.ImageField(null=True, blank=True, default='pic02.jpg')
+    postImg = models.ImageField(upload_to = "images", null=True, blank=True, default='pic02.jpg')
     
     print("WORKING.................")
     
