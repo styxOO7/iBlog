@@ -6,3 +6,4 @@ gunicorn
 django_tinymce==3.4.0
 python-decouple==3.6
 Pillow==9.1.0
+pymongo[srv]
