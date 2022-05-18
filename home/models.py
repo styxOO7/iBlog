@@ -7,7 +7,7 @@ from blog import settings
 from djongo.storage import GridFSStorage
 
 # Define your GrifFSStorage instance 
-grid_fs_storage = GridFSStorage(collection='images')
+# grid_fs_storage = GridFSStorage(collection='images')
 
 # Create your models here.
 class NewPost(models.Model):
@@ -25,7 +25,9 @@ class NewPost(models.Model):
     postTime = models.TextField(default=datetime.datetime.now().strftime("%I:%M%p"))
     postDate = models.TextField(default=datetime.datetime.now().strftime("%B %d, %Y"))
     
-    postImg = models.ImageField(upload_to = "images",  storage=grid_fs_storage, null=True, blank=True, default='pic02.jpg')
+    # postImg = models.ImageField(upload_to = "images",  storage=grid_fs_storage, null=True, blank=True, default='pic02.jpg')
+    
+    postImg = models.ImageField(upload_to = "images", null=True, blank=True, default='pic02.jpg')
     
     print("WORKING.................")
     
