@@ -8,3 +8,4 @@ python-decouple==3.6
 Pillow==9.1.0
 pymongo[srv]
 sqlparse==0.2.4
+pymongo==3.12.1
