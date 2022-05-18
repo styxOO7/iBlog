@@ -83,12 +83,28 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# for mongoDb:
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'django',
+        
+        'CLIENT': {
+           'host': 'mongodb+srv://tejassri:Tejas2002@djangocluster.dbos2.mongodb.net/?retryWrites=true&w=majority', 
+            'username': 'tejassri',
+            'password': 'Tejas2002',
+            'authMechanism': 'SCRAM-SHA-1'
+        }
     }
 }
+# https://stackoverflow.com/questions/60331228/django-cant-connect-to-mongodb-atlas
 
 
 # Password validation
@@ -155,5 +171,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'home/static/images')
 # ]
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+UPLOADED_FILES_USE_URL = True
 django_heroku.settings(locals())
