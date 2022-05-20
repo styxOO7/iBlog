@@ -10,7 +10,7 @@ Django 3 <br>
 MongoDb <br>
 
 Main page -> show all posts with Posting Date and Time (under IST using pillow). <br>
-Generic page -> to read more about the selected post. <br> <br>
+Generic page -> to read more about the selected post. <br>
 Search page-> filter posts using topic or date entered (with constraints of valid/invalid date added). <br>
 Add Post page -> user to add new post with topic, content + upload image feature (if no image selected -> a default image from database). <br>
 Update Post page -> user to update topic, content and change uploaded image for selected post. <br>
