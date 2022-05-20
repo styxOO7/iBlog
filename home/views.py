@@ -6,13 +6,77 @@ from django.db.models import Max
 
 import datetime
 from django.core.paginator import Paginator, EmptyPage
+import re
+
+# for contact:
+import pymongo
+
+from django.conf import settings
+connect_string = "mongodb+srv://tejassri:Tejas2002@contactcluster.hrscy.mongodb.net/test"
+my_client = pymongo.MongoClient(connect_string)
+
+# define the database 
+dbname = my_client['contact']
+collection_name = dbname["contactMe"]
+
+
+
+
 
 
 # Create your views here.
 
+
+# Contact:
+ 
+# for validating an Email
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+def check(email):
+ 
+    # pass the regular expression
+    # and the string into the fullmatch() method
+    if(re.fullmatch(regex, email)):
+        return True
+ 
+    else:
+       return False
+
+def contact(request):
+   
+   if request.method == 'POST':
+      name = request.POST['name']
+      email = request.POST['email']
+      message = request.POST['message']
+      
+      if(len(name) == 0 or len(message) == 0 or check(email) == 0):
+         messages.success(request, 'Please enter valid details.')
+         context = {
+            'name': name,
+            'message': name,
+            'email': email
+         }
+         return render(request, 'contact.html', context)
+         
+      
+      context = {
+         "name": name,
+         "email": email,
+         "message": message
+      }
+      print(context)
+      # dbname.collection_name.insert(context)
+      collection_name.insert(context)
+      print(context)
+      print("Saved to mongoDb.......................")
+      
+      messages.success(request, 'Message sent succesfully!!')
+      return redirect('contact')
+   return render(request, 'contact.html')
+
+
 # All Posts:
 def home(request):
-   allPosts = NewPost.objects.all()
+   allPosts = NewPost.objects.all().order_by('-postId')
    
    # for obj in allPosts:
    #    print("Post Id = ", obj.postId)
@@ -143,18 +207,22 @@ def searchPage(request):
          return render(request, "searchPage.html")
       
       dt = data.split()
+      #  day month year
       
       # if date:
       if dt[0].isdecimal() and dt[1].isdecimal() and dt[2].isdecimal():
          print("IT IS A DATE....................")
          
          dt = list(map(int, dt))
+         print(dt)
          
-         if (dt[0] < 1 or dt[0] > 12) or (dt[1] < 1 or dt[1] > 31) or (dt[2] < 1):
+         day, month, year = dt[0], dt[1], dt[2]
+         
+         if (month < 1 or month > 12) or (day < 1 or day > 31) or (year < 1):
             messages.success(request, "Error: Enter valid search details.")
             return render(request, "searchPage.html")
          
-         x = datetime.datetime(dt[0], dt[1], dt[2])
+         x = datetime.datetime(year, month, day)
          postDate = (x.strftime("%b %d, %Y"))
          
          print(dt)

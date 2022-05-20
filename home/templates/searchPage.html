@@ -33,6 +33,7 @@
 							<li><a href="{% url 'index' %}">Home</a></li>
 							{% comment %} <li><a href="{% url 'generic' 1 %}">Generic Page</a></li> {% endcomment %}
 							<li><a href="{% url 'elements' %}">Add Post</a></li>
+							<li class=""><a href="{% url 'contact' %}">Contact Me</a></li>
 						</ul>
 						<ul class="actions">
 							<li><a href="{% url 'searchPage' %}" class="button  icon solid fa-search">Search</a></li>
@@ -49,7 +50,7 @@
 										{% csrf_token %}
 										<div class="row gtr-uniform">
                                             <div class="col-8 col-12-xsmall">
-                                                <input type="text" name="data" id="demo-name" value="" placeholder="Topic / yyyy mm dd" />
+                                                <input type="text" name="data" id="demo-name" value="" placeholder="Topic / dd mm yyyy" />
                                             </div>
 											<div class="col-12">
 												<ul class="actions">
@@ -115,9 +116,9 @@
 			
 
 				<!-- Copyright -->
-					<div id="copyright"  style="font-size: large;">
-						<ul><li><a href="">Made with love ❤️</li><li>by:  Tejas Srivastava</a></li></ul>
-					</div>
+				<div id="copyright"  style="font-size: large; color: white">
+					<ul><li><a href="">Made with love ❤️</li><li>by:  Tejas Srivastava</a></li></ul>
+				</div>
 
 			</div>
 

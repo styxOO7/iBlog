@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Add new Post - iBlog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="shortcut icon" href="{% static 'favicon/favicon.png' %}"/>
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="" class="logo">iBlog</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="{% url 'index' %}">Home</a></li>
+							{% comment %} <li><a href="{% url 'generic' 1 %}">Generic Page</a></li> {% endcomment %}
+							<li class=""><a href="{% url 'elements' %}">Add Post</a></li>
+							<li class="active"><a href="{% url 'contact' %}">Contact Me</a></li>
+							
+						</ul>
+						{% comment %} <ul class="actions">
+							<li><a href="{% url 'searchPage' %}" class="button  icon solid fa-search">Search</a></li>
+						</ul> {% endcomment %}
+						 <ul class="icons">
+							
+							<li><a href="https://www.instagram.com/srivastava__tejas/" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/styxOO7/" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul> 
+					</nav>
+
+                    
+                    {% comment %} style="background-color: rgb(33 33 33)" {% endcomment %}
+                    <!-- Footer -->
+                    
+
+					<footer id="footer">
+                        <section>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <blockquote style="color: black">{{ message }}</blockquote>
+                                {% endfor %}
+                            {% endif %}
+                            
+
+							<form method="POST" action="{% url 'contact' %}">
+                                {% csrf_token %}
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" value="{{name}}" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" value="{{email}}" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" value="{{message}}" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+                                
+							</form>
+						</section>
+                        
+						{% comment %} <section class="split contact">
+							
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section> {% endcomment %}
+					</footer> 
+
+				<!-- Copyright -->
+				<div id="copyright"  style="font-size: large; color: white">
+					<ul><li><a href="">Made with love ❤️</li><li>by:  Tejas Srivastava</a></li></ul>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+		{% comment %} {% if messages %}
+			{% for message in messages %}
+				<script>
+					alert('{{ message }}');
+				</script>
+			{% endfor %}
+		{% endif %} {% endcomment %}
+	
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

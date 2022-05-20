@@ -40,6 +40,7 @@ urlpatterns = [
     path('searchPage', views.searchPage, name='searchPage'),
     
     path('elements', views.elements, name='elements'),
+    path('contact', views.contact, name='contact'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
