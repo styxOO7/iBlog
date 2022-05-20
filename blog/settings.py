@@ -81,15 +81,6 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 # for mongoDb:
 DATABASES = {
     'default': {
@@ -97,9 +88,9 @@ DATABASES = {
         'NAME': 'django',
         
         'CLIENT': {
-           'host': 'mongodb+srv://tejassri:Tejas2002@djangocluster.dbos2.mongodb.net/?retryWrites=true&w=majority', 
-            'username': 'tejassri',
-            'password': 'Tejas2002',
+           'host': 'mongodb+srv://<username>:<password>@djangocluster.dbos2.mongodb.net/?retryWrites=true&w=majority', 
+            'username': '',
+            'password': '',
             'authMechanism': 'SCRAM-SHA-1'
         }
     }
@@ -153,23 +144,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Added manually:
-
-# serves the file directly from the specified path -> WARNING DONT ADD SENSITIVE FILES
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static"
-# ]
-
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'home/static/images')
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 UPLOADED_FILES_USE_URL = True
 django_heroku.settings(locals())
