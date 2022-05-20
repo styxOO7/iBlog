@@ -12,7 +12,7 @@ import re
 import pymongo
 
 from django.conf import settings
-connect_string = "mongodb+srv://tejassri:Tejas2002@contactcluster.hrscy.mongodb.net/test"
+connect_string = "mongodb+srv://<username>:<password>@contactcluster.hrscy.mongodb.net/test"
 my_client = pymongo.MongoClient(connect_string)
 
 # define the database 
