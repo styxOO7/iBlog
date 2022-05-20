@@ -2,7 +2,7 @@
 full stack Blog web application using Django <br>
 
 
-Live: https://iblogwebsite.herokuapp.com/index <br>
+Live: https://iblogwebsite.herokuapp.com/ <br>
 
 Tech: <br>
 HTML, CSS, JS  <br>
