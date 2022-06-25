@@ -31,17 +31,10 @@ Additionally : <br>
 Added pagination to the main page using Paginator module in Python. <br>
 Exploited Django messages for various alerts and confirmations during add and update feature. <br>
 
+Contact page for contacting the admin. <br>
 ![Screenshot](https://github.com/styxOO7/iBlog/blob/master/c.png) 
 
-Contact page for contacting the admin. <br>
 
 
 
-</br>
-![Screenshot](https://github.com/styxOO7/ToDo-Web-App/blob/master/githubImages/2.png)
-</br>
-
-</br>
-![Screenshot](https://github.com/styxOO7/ToDo-Web-App/blob/master/githubImages/3.png)
-</br>
 
