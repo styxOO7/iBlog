@@ -4,7 +4,7 @@ Full Stack Blog web application using Django <br>
 
 Live: https://iblogwebsite.herokuapp.com/ <br>
 
-Tech: <br>
+Tech Stack used: <br>
 HTML, CSS, JS  <br>
 Django 3 <br>
 MongoDb <br>
